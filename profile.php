@@ -165,7 +165,7 @@ if ($con->connect_error) {
                 </form>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- ✅ Single Cart Link -->
+                    <!-- Single Cart Link -->
                     <li>
                         <a href="cart.php">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Cart

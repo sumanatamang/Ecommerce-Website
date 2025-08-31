@@ -13,7 +13,7 @@ if (isset($_GET["st"], $_GET["tx"], $_GET["amt"], $_GET["cc"], $_GET["cm"])) {
     $cc = $_GET["cc"];
     $cm_user_id = $_GET["cm"];
 
-    // Check if payment status is Completed
+    // Only proceed if payment status is Completed
     if ($p_st === "Completed") {
 
         include_once("db.php");
@@ -55,39 +55,48 @@ if (isset($_GET["st"], $_GET["tx"], $_GET["amt"], $_GET["cc"], $_GET["cm"])) {
                 <script src="js/bootstrap.min.js"></script>
                 <script src="main.js"></script>
                 <style>
-                    table tr td {
-                        padding: 10px;
+                    body {
+                        padding-top: 60px;
+                    }
+
+                    .panel-body {
+                        padding: 40px;
                     }
                 </style>
             </head>
 
             <body>
+                <!-- Navbar -->
                 <div class="navbar navbar-inverse navbar-fixed-top">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a href="#" class="navbar-brand">Ecommerce</a>
+                            <a href="#" class="navbar-brand">Achaar Bazar</a>
                         </div>
                         <ul class="nav navbar-nav">
                             <li><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                            <li><a href="profile.php"><span class="glyphicon glyphicon-modal-window"></span> Product</a></li>
+                            <li><a href="profile.php"><span class="glyphicon glyphicon-modal-window"></span> Products</a></li>
                         </ul>
                     </div>
                 </div>
-                <p><br /><br /><br /></p>
-                <div class="container-fluid">
+
+                <!-- Payment Success -->
+                <div class="container">
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
-                            <div class="panel panel-default">
-                                <div class="panel-heading"></div>
+                            <div class="panel panel-success">
+                                <div class="panel-heading text-center">
+                                    <h3>Payment Successful</h3>
+                                </div>
                                 <div class="panel-body text-center">
-                                    <h1>Thank You!</h1>
-                                    <hr />
+                                    <h2>Thank You!</h2>
                                     <p>Hello <b><?php echo htmlspecialchars($_SESSION["name"]); ?></b>, your payment has been
-                                        successfully completed. <br />
-                                        Transaction ID: <b><?php echo htmlspecialchars($trx_id); ?></b><br />
-                                        You can continue your shopping below.</p>
+                                        successfully completed.</p>
+                                    <p>Transaction ID: <b><?php echo htmlspecialchars($trx_id); ?></b></p>
+                                    <p>Amount Paid: <b><?php echo htmlspecialchars($amt); ?>
+                                            <?php echo htmlspecialchars($cc); ?></b></p>
                                     <a href="index.php" class="btn btn-success btn-lg">Continue Shopping</a>
+                                    <a href="customer_order.php" class="btn btn-primary btn-lg">View Orders</a>
                                 </div>
                                 <div class="panel-footer"></div>
                             </div>

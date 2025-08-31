@@ -50,14 +50,17 @@ session_start();
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge">0</span>
+                        <a href="cart.php">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Cart
+                            <span class="badge" id="cart_count">0</span>
                         </a>
+                    </li>
+                    <li>
                         <div class="dropdown-menu" style="width:400px;">
                             <div class="panel panel-success">
                                 <div class="panel-heading">
                                     <div class="row">
-                                        <div class="col-md-3">Sl.No</div>
+                                        <div class="col-md-3">S.No</div>
                                         <div class="col-md-3">Image</div>
                                         <div class="col-md-3">Pickle Name</div>
                                         <div class="col-md-3">Price (<?php echo CURRENCY; ?>)</div>
