@@ -241,7 +241,7 @@ VALUES
     'Sumana',
     'Tamang',
     'sumana@gmail.com',
-    '$2y$10$MFsWA7e1ADybWPz4EbUa0eR3K.3HyFjuyJIlAWm5rukK7wHZENKfW',
+    '$2y$10$aI4PNrDIQOc.aGSA1NECq.cDCservuoQxCOAHLcFdMxvuXPfC/VlW',
     '9800000000',
     'Kathmandu',
     'Bagmati'
@@ -261,7 +261,7 @@ VALUES
   (
     'Jasmine',
     'Shrestha',
-    'jasmineshrestha@mail.com',
+    'jasmine@gmail.com',
     '$2y$10$aI4PNrDIQOc.aGSA1NECq.cDCservuoQxCOAHLcFdMxvuXPfC/VlW',
     '9839497490',
     'Kathmandu',
@@ -282,7 +282,7 @@ VALUES
   (
     'Dikshya',
     'Timilsina',
-    'dikshya.t@mail.com',
+    'dikshya@gmail.com',
     '$2y$10$aI4PNrDIQOc.aGSA1NECq.cDCservuoQxCOAHLcFdMxvuXPfC/VlW',
     '9872465209',
     'Kathmandu',
@@ -303,7 +303,7 @@ VALUES
   (
     'Puspa',
     'Bhandari',
-    'puspa@mail.com',
+    'puspa@gmail.com',
     '$2y$10$aI4PNrDIQOc.aGSA1NECq.cDCservuoQxCOAHLcFdMxvuXPfC/VlW',
     '9847204789',
     'Bhaktapur',
@@ -324,7 +324,7 @@ VALUES
   (
     'Sovitha',
     'Khadka',
-    'binisha@mail.com',
+    'sovitha@gmail.com',
     '$2y$10$aI4PNrDIQOc.aGSA1NECq.cDCservuoQxCOAHLcFdMxvuXPfC/VlW',
     '9782047295',
     'Kathmandu',
