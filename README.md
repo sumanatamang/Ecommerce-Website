@@ -5,10 +5,24 @@
    git clone https://github.com/sumanatamang/Ecommerce-Website.git
    ```
 
-2. Set up your web server (Apache/XAMPP) and ensure PHP is installed
+2. Set Up Your Web Server
+   Use Apache (via XAMPP or WAMP)
 
-3. Import the database:
-   - Navigate to the `database` folder
-   - Import the SQL file into your MySQL server
+   Ensure PHP is installed and properly configured
 
-4. Start your web server and access the application
+   Place the cloned project folder inside XAMPP/htdocs 
+
+3. Import the Database
+   Open phpMyAdmin
+   
+   Import the .sql file from the folder DATABASE
+
+4. Launch the Application
+   Start your web server (Apache and MySQL)
+
+   Open your browser and go to:
+
+   Code
+   http://localhost/Ecommerce-Website
+   
+   You should now see the application running!
