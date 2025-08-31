@@ -17,8 +17,9 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: 100; 
-  padding: 60px 0 0; /* Adjust for navbar height */
+  z-index: 100;
+  padding: 60px 0 0;
+  /* Adjust for navbar height */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
   background-color: #fff;
 }
@@ -63,7 +64,8 @@ body {
 
 /* Main Content */
 [role="main"] {
-  margin-left: 250px; /* Adjust based on sidebar width */
+  margin-left: 250px;
+  /* Adjust based on sidebar width */
   padding: 20px;
 }
 
@@ -77,7 +79,7 @@ body {
 /* Navbar */
 .navbar {
   z-index: 1030;
-  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
 }
 
 .navbar-brand {
@@ -109,7 +111,8 @@ body {
   margin-top: 20px;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   vertical-align: middle;
 }
 

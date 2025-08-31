@@ -1,7 +1,7 @@
 <?php
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 }
 
 // Safely get admin name
@@ -12,10 +12,10 @@ $adminName = isset($_SESSION["admin_name"]) ? $_SESSION["admin_name"] : 'Guest';
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
 
-      <?php  
-        $uri = $_SERVER['REQUEST_URI']; 
-        $uriAr = explode("/", $uri);
-        $page = end($uriAr);
+      <?php
+      $uri = $_SERVER['REQUEST_URI'];
+      $uriAr = explode("/", $uri);
+      $page = end($uriAr);
       ?>
 
       <li class="nav-item">

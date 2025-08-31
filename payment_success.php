@@ -8,9 +8,9 @@ if (!isset($_SESSION["uid"])) {
 if (isset($_GET["st"], $_GET["tx"], $_GET["amt"], $_GET["cc"], $_GET["cm"])) {
 
     $trx_id = $_GET["tx"];
-    $p_st   = $_GET["st"];
-    $amt    = $_GET["amt"];
-    $cc     = $_GET["cc"];
+    $p_st = $_GET["st"];
+    $amt = $_GET["amt"];
+    $cc = $_GET["cc"];
     $cm_user_id = $_GET["cm"];
 
     // Check if payment status is Completed
@@ -46,18 +46,24 @@ if (isset($_GET["st"], $_GET["tx"], $_GET["amt"], $_GET["cc"], $_GET["cm"])) {
             ?>
             <!DOCTYPE html>
             <html>
+
             <head>
                 <meta charset="UTF-8">
                 <title>Payment Success</title>
-                <link rel="stylesheet" href="css/bootstrap.min.css"/>
+                <link rel="stylesheet" href="css/bootstrap.min.css" />
                 <script src="js/jquery2.js"></script>
                 <script src="js/bootstrap.min.js"></script>
                 <script src="main.js"></script>
-                <style>table tr td { padding:10px; }</style>
+                <style>
+                    table tr td {
+                        padding: 10px;
+                    }
+                </style>
             </head>
+
             <body>
                 <div class="navbar navbar-inverse navbar-fixed-top">
-                    <div class="container-fluid">    
+                    <div class="container-fluid">
                         <div class="navbar-header">
                             <a href="#" class="navbar-brand">Ecommerce</a>
                         </div>
@@ -67,7 +73,7 @@ if (isset($_GET["st"], $_GET["tx"], $_GET["amt"], $_GET["cc"], $_GET["cm"])) {
                         </ul>
                     </div>
                 </div>
-                <p><br/><br/><br/></p>
+                <p><br /><br /><br /></p>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-2"></div>
@@ -76,10 +82,11 @@ if (isset($_GET["st"], $_GET["tx"], $_GET["amt"], $_GET["cc"], $_GET["cm"])) {
                                 <div class="panel-heading"></div>
                                 <div class="panel-body text-center">
                                     <h1>Thank You!</h1>
-                                    <hr/>
-                                    <p>Hello <b><?php echo htmlspecialchars($_SESSION["name"]); ?></b>, your payment has been successfully completed. <br/>
-                                    Transaction ID: <b><?php echo htmlspecialchars($trx_id); ?></b><br/>
-                                    You can continue your shopping below.</p>
+                                    <hr />
+                                    <p>Hello <b><?php echo htmlspecialchars($_SESSION["name"]); ?></b>, your payment has been
+                                        successfully completed. <br />
+                                        Transaction ID: <b><?php echo htmlspecialchars($trx_id); ?></b><br />
+                                        You can continue your shopping below.</p>
                                     <a href="index.php" class="btn btn-success btn-lg">Continue Shopping</a>
                                 </div>
                                 <div class="panel-footer"></div>
@@ -89,6 +96,7 @@ if (isset($_GET["st"], $_GET["tx"], $_GET["amt"], $_GET["cc"], $_GET["cm"])) {
                     </div>
                 </div>
             </body>
+
             </html>
             <?php
         } else {

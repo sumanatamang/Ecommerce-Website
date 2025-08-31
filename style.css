@@ -130,6 +130,7 @@
 	overflow: hidden;
 	transition: transform 0.3s, box-shadow 0.3s;
 	transform: translateY(20px);
+	margin-bottom: 100px;
 }
 
 .card.show {
@@ -139,14 +140,17 @@
 }
 
 .card:hover {
-	transform: translateY(-5px);
+	/* transform: translateY(-2px); */
 	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .category-card img,
 .product-card img {
 	height: 200px;
+	height: 200px;
 	object-fit: cover;
+	display: block;
+	margin: 0 auto;
 }
 
 .category-card h4,
@@ -263,7 +267,7 @@ footer {
 .product-card .price {
 	font-weight: bold;
 	color: #28a745;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 .product-card .card-body {

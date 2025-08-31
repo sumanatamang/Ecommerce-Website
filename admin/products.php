@@ -1,7 +1,7 @@
-<?php 
-session_start(); 
-include_once("./templates/top.php"); 
-include_once("./templates/navbar.php"); 
+<?php
+session_start();
+include_once("./templates/top.php");
+include_once("./templates/navbar.php");
 ?>
 
 <div class="container-fluid">
@@ -15,7 +15,7 @@ include_once("./templates/navbar.php");
         <h2>Product List</h2>
         <a href="#" data-toggle="modal" data-target="#add_product_modal" class="btn btn-warning btn-sm">Add Product</a>
       </div>
-      
+
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -116,7 +116,8 @@ include_once("./templates/navbar.php");
           </div>
           <div class="form-group">
             <label>Product Quantity</label>
-            <input type="number" name="e_product_qty" class="form-control" placeholder="Enter Product Quantity" required>
+            <input type="number" name="e_product_qty" class="form-control" placeholder="Enter Product Quantity"
+              required>
           </div>
           <div class="form-group">
             <label>Product Price</label>

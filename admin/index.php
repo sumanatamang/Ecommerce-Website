@@ -1,17 +1,17 @@
-<?php 
-session_start();  
+<?php
+session_start();
 if (!isset($_SESSION['admin_id'])) {
-    header("location:login.php");
-    exit();
+  header("location:login.php");
+  exit();
 }
 
-include "./templates/top.php"; 
-include "./templates/navbar.php"; 
+include "./templates/top.php";
+include "./templates/navbar.php";
 ?>
 
 <div class="container-fluid">
   <div class="row">
-    
+
     <?php include "./templates/sidebar.php"; ?>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">

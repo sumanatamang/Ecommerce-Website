@@ -17,15 +17,15 @@ if (isset($_POST["f_name"])) {
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
-    if($stmt->num_rows > 0){
+    if ($stmt->num_rows > 0) {
         echo "Email already registered!";
         exit();
     }
 
     // Insert new user
     $stmt = $con->prepare("INSERT INTO user_info (first_name,last_name,email,password,mobile,address1,address2) VALUES (?,?,?,?,?,?,?)");
-    $stmt->bind_param("sssssss", $f_name,$l_name,$email,$password,$mobile,$address1,$address2);
-    if($stmt->execute()){
+    $stmt->bind_param("sssssss", $f_name, $l_name, $email, $password, $mobile, $address1, $address2);
+    if ($stmt->execute()) {
         echo "register_success";
     } else {
         echo "Something went wrong: " . $con->error;
@@ -43,9 +43,9 @@ if (isset($_POST["userLogin"])) {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if($result->num_rows === 1){
+    if ($result->num_rows === 1) {
         $row = $result->fetch_assoc();
-        if(password_verify($password, $row["password"])){
+        if (password_verify($password, $row["password"])) {
             $_SESSION["uid"] = $row["user_id"];
             $_SESSION["name"] = $row["first_name"];
             echo "login_success";
@@ -64,15 +64,15 @@ if (isset($_POST["category"])) {
     $run_query = mysqli_query($con, $sql);
 
     $html = '<div class="row">';
-    while($row = mysqli_fetch_array($run_query)){
+    while ($row = mysqli_fetch_array($run_query)) {
         $cat_id = $row['cat_id'];
         $cat_title = $row['cat_title'];
 
         $html .= '
         <div class="col-md-4 col-sm-6 mb-3">
             <div class="card category-card text-center p-3">
-                <h5>'.$cat_title.'</h5>
-                <button class="btn btn-success category" cid="'.$cat_id.'">View Pickles</button>
+                <h5>' . $cat_title . '</h5>
+                <button class="btn btn-success category" cid="' . $cat_id . '">View Pickles</button>
             </div>
         </div>';
     }
@@ -88,7 +88,7 @@ if (isset($_POST["getProduct"])) {
     $run_query = mysqli_query($con, $product_query);
 
     $html = "";
-    if(mysqli_num_rows($run_query) > 0){
+    if (mysqli_num_rows($run_query) > 0) {
         while ($row = mysqli_fetch_array($run_query)) {
             $pro_id = $row['product_id'];
             $pro_title = $row['product_title'];
@@ -122,8 +122,8 @@ if (isset($_POST["get_seleted_Category"])) {
     $run_query = mysqli_query($con, $sql);
 
     $html = "";
-    if(mysqli_num_rows($run_query) > 0){
-        while($row = mysqli_fetch_array($run_query)){
+    if (mysqli_num_rows($run_query) > 0) {
+        while ($row = mysqli_fetch_array($run_query)) {
             $pro_id = $row['product_id'];
             $pro_title = $row['product_title'];
             $pro_price = $row['product_price'];
@@ -156,8 +156,8 @@ if (isset($_POST["search"])) {
     $run_query = mysqli_query($con, $sql);
 
     $html = "";
-    if(mysqli_num_rows($run_query) > 0){
-        while($row = mysqli_fetch_array($run_query)){
+    if (mysqli_num_rows($run_query) > 0) {
+        while ($row = mysqli_fetch_array($run_query)) {
             $pro_id = $row['product_id'];
             $pro_title = $row['product_title'];
             $pro_price = $row['product_price'];
@@ -184,11 +184,11 @@ if (isset($_POST["search"])) {
 }
 
 // ================== ADD TO CART ==================
-if(isset($_POST["addToCart"])){
-    $p_id = $_POST["proId"];
-    $user_id = $_SESSION["uid"] ?? null; 
+if (isset($_POST["addToCart"])) {
+    $p_id = (int) $_POST["proId"];
+    $user_id = $_SESSION["uid"] ?? null;
 
-    if(!$user_id){
+    if (!$user_id) {
         echo "You must be logged in to add to cart!";
         exit();
     }
@@ -196,69 +196,59 @@ if(isset($_POST["addToCart"])){
     $ip_add = $_SERVER['REMOTE_ADDR'];
 
     // Check if product already in cart
-    $stmt = $con->prepare("SELECT id FROM cart WHERE p_id=? AND user_id=?");
-    $stmt->bind_param("ii", $p_id,$user_id);
+    $stmt = $con->prepare("SELECT id, qty FROM cart WHERE p_id=? AND user_id=?");
+    $stmt->bind_param("ii", $p_id, $user_id);
     $stmt->execute();
-    $stmt->store_result();
+    $result = $stmt->get_result();
 
-    if($stmt->num_rows > 0){
-        echo "Product already in cart!";
+    if ($row = $result->fetch_assoc()) {
+        // Product already exists → update quantity
+        $new_qty = $row['qty'] + 1;
+        $update = $con->prepare("UPDATE cart SET qty=? WHERE id=?");
+        $update->bind_param("ii", $new_qty, $row['id']);
+        $update->execute();
+        echo "Quantity updated!";
     } else {
+        // Insert as new item
         $stmt = $con->prepare("INSERT INTO cart (p_id, ip_add, user_id, qty) VALUES (?,?,?,1)");
-        $stmt->bind_param("isi", $p_id,$ip_add,$user_id);
-        if($stmt->execute()){
+        $stmt->bind_param("isi", $p_id, $ip_add, $user_id);
+        if ($stmt->execute()) {
             echo "Product added to cart!";
         } else {
-            echo "Database error: ".$con->error;
+            echo "Database error: " . $con->error;
         }
     }
     exit();
 }
 
-// ================== GET CART ITEMS ==================
-if(isset($_POST["Common"]) && isset($_POST["getCartItem"])){
-    if(!isset($_SESSION["uid"])) exit();
-
-    $user_id = $_SESSION["uid"];
-    $stmt = $con->prepare("SELECT cart.id, products.product_id, products.product_title, products.product_price, products.product_image, cart.qty 
-                           FROM cart 
-                           JOIN products ON cart.p_id = products.product_id
-                           WHERE cart.user_id=?");
-    $stmt->bind_param("i",$user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    while($row = $result->fetch_assoc()){
-        $cart_id = $row["id"];
-        $pro_id = $row["product_id"];
-        $pro_title = $row["product_title"];
-        $pro_price = $row["product_price"];
-        $pro_image = $row["product_image"];
-        $qty = $row["qty"];
-
-        echo "
-        <div class='cart-row'>
-            <div class='cart-item'>
-                <img src='product_images/$pro_image' width='50'>
-                <span>$pro_title</span>
-            </div>
-            <span class='cart-price'>$pro_price</span>
-            <input type='number' class='cart-qty' value='$qty' min='1' data-cartid='$cart_id'>
-            <button class='btn btn-danger btn-sm removeCart' data-cartid='$cart_id'>Remove</button>
-        </div>";
+// ================== GET CART COUNT ==================
+if (isset($_POST['get_cart_count'])) {
+    $user_id = $_SESSION["uid"] ?? null;
+    if (!$user_id) {
+        echo 0;
+        exit();
     }
+
+    $stmt = $con->prepare("SELECT SUM(qty) AS total_items FROM cart WHERE user_id=?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result()->fetch_assoc();
+
+    echo $result['total_items'] ?? 0;
     exit();
 }
 
+
 // ================== REMOVE CART ITEM ==================
-if(isset($_POST["removeItemFromCart"])){
-    if(!isset($_SESSION["uid"])) exit();
+if (isset($_POST["removeItemFromCart"])) {
+    if (!isset($_SESSION["uid"]))
+        exit();
     $user_id = $_SESSION["uid"];
     $cart_id = $_POST["rid"];
 
     $stmt = $con->prepare("DELETE FROM cart WHERE id=? AND user_id=?");
-    $stmt->bind_param("ii",$cart_id,$user_id);
-    if($stmt->execute()){
+    $stmt->bind_param("ii", $cart_id, $user_id);
+    if ($stmt->execute()) {
         echo "Item removed from cart!";
     } else {
         echo "Error removing item!";

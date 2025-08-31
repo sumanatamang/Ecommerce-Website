@@ -19,8 +19,10 @@ if (isset($_POST["f_name"])) {
     $numberPattern = "/^[0-9]+$/";
 
     // Check for empty fields
-    if (empty($f_name) || empty($l_name) || empty($email) || empty($password) || empty($repassword) ||
-        empty($mobile) || empty($address1) || empty($address2)) {
+    if (
+        empty($f_name) || empty($l_name) || empty($email) || empty($password) || empty($repassword) ||
+        empty($mobile) || empty($address1) || empty($address2)
+    ) {
 
         echo "<div class='alert alert-warning'>
                 <b>Please fill all fields!</b>

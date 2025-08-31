@@ -14,7 +14,8 @@
           <h2>Categories</h2>
         </div>
         <div class="col-2">
-          <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add_category_modal">Add Category</button>
+          <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#add_category_modal">Add
+            Category</button>
         </div>
       </div>
 
@@ -37,7 +38,8 @@
 </div>
 
 <!-- Add Category Modal -->
-<div class="modal fade" id="add_category_modal" tabindex="-1" role="dialog" aria-labelledby="addCategoryLabel" aria-hidden="true">
+<div class="modal fade" id="add_category_modal" tabindex="-1" role="dialog" aria-labelledby="addCategoryLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
