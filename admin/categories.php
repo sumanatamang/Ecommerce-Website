@@ -1,11 +1,14 @@
 <?php session_start(); ?>
 <?php include_once("./templates/top.php"); ?>
 <?php include_once("./templates/navbar.php"); ?>
+
 <div class="container-fluid">
   <div class="row">
+    <!-- Sidebar -->
     <?php include "./templates/sidebar.php"; ?>
 
-    <div class="col-12">
+    <!-- Main Content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="row mb-3">
         <div class="col-10">
           <h2>Categories</h2>
@@ -29,7 +32,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </main>
   </div>
 </div>
 

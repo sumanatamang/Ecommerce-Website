@@ -6,9 +6,11 @@ include_once("./templates/navbar.php");
 
 <div class="container-fluid">
   <div class="row">
+    <!-- Sidebar -->
     <?php include "./templates/sidebar.php"; ?>
 
-    <div class="col">
+    <!-- Main Content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Product List</h2>
         <a href="#" data-toggle="modal" data-target="#add_product_modal" class="btn btn-warning btn-sm">Add Product</a>
@@ -18,7 +20,7 @@ include_once("./templates/navbar.php");
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>#</th>
+              <th>Product No.</th>
               <th>Name</th>
               <th>Image</th>
               <th>Price</th>
@@ -32,7 +34,7 @@ include_once("./templates/navbar.php");
           </tbody>
         </table>
       </div>
-    </div>
+    </main>
   </div>
 </div>
 

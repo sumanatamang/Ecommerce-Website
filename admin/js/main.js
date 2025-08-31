@@ -1,13 +1,14 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     // Admin Registration
-    $(".register-btn").on("click", function() {
+    $(".register-btn").on("click", function (e) {
+        e.preventDefault(); // stop form from submitting normally
         $.ajax({
             url: '../admin/classes/Credentials.php', // backend script for registration
             method: "POST",
             data: $("#admin-register-form").serialize(),
-            success: function(response) {
-                console.log(response); // for debugging
+            success: function (response) {
+                console.log(response); // debug
                 try {
                     var resp = $.parseJSON(response);
                     if (resp.status == 202) {
@@ -21,25 +22,26 @@ $(document).ready(function() {
                     $(".message").html('<span class="text-danger">Unexpected error occurred.</span>');
                 }
             },
-            error: function() {
+            error: function () {
                 $(".message").html('<span class="text-danger">AJAX request failed.</span>');
             }
         });
     });
 
     // Admin Login
-    $(".login-btn").on("click", function() {
+    $(".login-btn").on("click", function (e) {
+        e.preventDefault();
         $.ajax({
-            url: '../admin/classes/Credentials.php', // backend script for login
+            url: 'classes/Credentials.php', // Correct relative path
             method: "POST",
             data: $("#admin-login-form").serialize(),
             success: function(response) {
-                console.log(response); // for debugging
+                console.log(response); // Debugging
                 try {
                     var resp = $.parseJSON(response);
                     if (resp.status == 202) {
                         $("#admin-login-form").trigger("reset");
-                        window.location.href = window.origin + "/ecommerce-website/admin/index.php";
+                        window.location.href = 'dashboard.php'; // redirect to admin dashboard
                     } else if (resp.status == 303) {
                         $(".message").html('<span class="text-danger">' + resp.message + '</span>');
                     }

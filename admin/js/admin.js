@@ -1,49 +1,31 @@
-function getAdmins(){
+// Handle admin login
+$(document).on("click", ".login-btn", function (e) {
+    e.preventDefault();
+
+    var formData = $("#admin-login-form").serialize();
+
     $.ajax({
-        url: '../admin/classes/Admin.php',
-        method: 'POST',
-        data: {GET_ADMIN:1},
-        success: function(response){
-            console.log(response);
-            var resp = $.parseJSON(response);
-            
-            if(resp.status == 202){
-                var adminHTML = '';
-                $.each(resp.message, function(index, value){
-                    adminHTML += '<tr>'+
-                                    '<td>' + (index+1) + '</td>'+
-                                    '<td>' + value.name + '</td>'+
-                                    '<td>' + value.email + '</td>'+
-                                    '<td>' + (value.is_active == 1 ? 'Active' : 'Inactive') + '</td>'+
-                                    '<td>'+
-                                        '<button class="btn btn-sm btn-danger delete-admin" data-id="'+value.admin_id+'">'+
-                                            '<i class="fas fa-trash-alt"></i>'+
-                                        '</button>'+
-                                    '</td>'+
-                                 '</tr>';
-                });
-                $("#admin_list").html(adminHTML);
-            } else {
-                $("#admin_list").html('<tr><td colspan="5">'+resp.message+'</td></tr>');
+        url: "../admin/classes/Admin.php", // your backend PHP class
+        method: "POST",
+        data: formData,
+        success: function (response) {
+            try {
+                var resp = $.parseJSON(response);
+
+                if (resp.status == 202) {
+                    // Login successful
+                    window.location.href = "index.php"; 
+                } else {
+                    $(".message").html('<div class="alert alert-danger">'+resp.message+'</div>');
+                }
+            } catch (err) {
+                console.error("Parse error:", err, response);
+                $(".message").html('<div class="alert alert-danger">Unexpected server response.</div>');
             }
         },
-        error: function(xhr, status, error){
+        error: function (xhr, status, error) {
             console.error(error);
+            $(".message").html('<div class="alert alert-danger">Something went wrong.</div>');
         }
     });
-}
-
-// Delete admin
-$(document).on('click', '.delete-admin', function(){
-    var admin_id = $(this).data('id');
-    if(confirm("Are you sure you want to delete this admin?")){
-        $.ajax({
-            url: '../admin/classes/Admin.php',
-            method: 'POST',
-            data: {DELETE_ADMIN:1, admin_id: admin_id},
-            success: function(resp){
-                getAdmins(); // Refresh list
-            }
-        });
-    }
 });

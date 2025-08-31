@@ -24,7 +24,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `admin` (`id`, `name`, `email`, `password`, `is_active`) VALUES
-(1, 'Admin', 'admin@gmail.com', 'admin123', '1');
+(1, 'Admin', 'admin@gmail.com', '$2y$10$mNdjkL6gQjWvfhaqZYr34.WENavESjxx01P6fLj0HVMnP66.3hQgK', '1');
 
 -- -------------------------
 -- Table structure for `categories`
@@ -89,11 +89,11 @@ CREATE TABLE `user_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Insert user with hashed password ('123456')
-INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Sumana', 'Tamang', 'sumana@gmail.com', 'sumanauser', '9800000000', 'Kathmandu', 'Bagmati');
-INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Jasmine', 'Shrestha', 'jasmineshrestha@mail.com', 'jasmine123', '9839497490', 'Kathmandu', 'Bagmati');
-INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Dikshya', 'Timilsina', 'dikshya.t@mail.com', 'dikshya23', '9872465209', 'Kathmandu', 'Bagmati');
-INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Puspa', 'Bhandari', 'puspa@mail.com', 'puspab12', '9847204789', 'Bhaktapur', 'Bagmati');
-INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Sovitha', 'Khadka', 'binisha@mail.com', 'binisha123', '9782047295', 'Kathmandu', 'Bagmati');
+INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Sumana', 'Tamang', 'sumana@gmail.com', '$2y$10$MFsWA7e1ADybWPz4EbUa0eR3K.3HyFjuyJIlAWm5rukK7wHZENKfW', '9800000000', 'Kathmandu', 'Bagmati');
+INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Jasmine', 'Shrestha', 'jasmineshrestha@mail.com', '$2y$10$aI4PNrDIQOc.aGSA1NECq.cDCservuoQxCOAHLcFdMxvuXPfC/VlW', '9839497490', 'Kathmandu', 'Bagmati');
+INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Dikshya', 'Timilsina', 'dikshya.t@mail.com', '$2y$10$aI4PNrDIQOc.aGSA1NECq.cDCservuoQxCOAHLcFdMxvuXPfC/VlW', '9872465209', 'Kathmandu', 'Bagmati');
+INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Puspa', 'Bhandari', 'puspa@mail.com', '$2y$10$aI4PNrDIQOc.aGSA1NECq.cDCservuoQxCOAHLcFdMxvuXPfC/VlW', '9847204789', 'Bhaktapur', 'Bagmati');
+INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Sovitha', 'Khadka', 'binisha@mail.com', '$2y$10$aI4PNrDIQOc.aGSA1NECq.cDCservuoQxCOAHLcFdMxvuXPfC/VlW', '9782047295', 'Kathmandu', 'Bagmati');
 
 -- -------------------------
 -- Table structure for `cart`
