@@ -1,0 +1,286 @@
+/* ------------------- Hero Section ------------------- */
+.hero {
+	color: #222;
+	padding: 100px 40px;
+	position: relative;
+	background-color: #fff8dc;
+	/* Light yellowish-white (Cornsilk) */
+	overflow: hidden;
+}
+
+.hero::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.3);
+	/* Soft overlay for blending */
+	z-index: 1;
+}
+
+.hero-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
+	z-index: 2;
+	flex-wrap: wrap;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.hero-text {
+	flex: 1;
+	max-width: 50%;
+	padding-right: 30px;
+	text-align: left;
+}
+
+.hero-image {
+	flex: 1;
+	max-width: 50%;
+	text-align: right;
+}
+
+.hero-image img {
+	max-width: 100%;
+	height: auto;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+	/* Optional depth */
+	border-radius: 0;
+	/* No rounded corners */
+}
+
+.hero h1 {
+	font-size: 60px;
+	font-weight: 700;
+	margin-bottom: 20px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.hero p {
+	font-size: 20px;
+	margin-bottom: 30px;
+	line-height: 1.6;
+}
+
+.hero .btn {
+	padding: 15px 30px;
+	font-size: 18px;
+	transition: 0.3s;
+	background-color: #ffc107;
+	color: #222;
+	border: none;
+	border-radius: 5px;
+}
+
+.hero .btn:hover {
+	transform: scale(1.1);
+	background-color: #e0a800;
+}
+
+/* ------------------- Responsive Design ------------------- */
+@media (max-width: 768px) {
+	.hero-container {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.hero-text,
+	.hero-image {
+		max-width: 100%;
+		padding: 0;
+	}
+
+	.hero-image {
+		margin-top: 30px;
+	}
+
+	.hero h1 {
+		font-size: 40px;
+	}
+
+	.hero p {
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 480px) {
+	.hero h1 {
+		font-size: 35px;
+	}
+
+	.hero p {
+		font-size: 16px;
+	}
+
+	.hero .btn {
+		font-size: 16px;
+		padding: 12px 24px;
+	}
+}
+
+/* ------------------- Cards ------------------- */
+.card {
+	border: none;
+	border-radius: 15px;
+	overflow: hidden;
+	transition: transform 0.3s, box-shadow 0.3s;
+	transform: translateY(20px);
+}
+
+.card.show {
+	opacity: 1;
+	transform: translateY(0);
+	transition: all 0.6s ease-in-out;
+}
+
+.card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.category-card img,
+.product-card img {
+	height: 200px;
+	object-fit: cover;
+}
+
+.category-card h4,
+.product-card h5 {
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+/* ------------------- Buttons ------------------- */
+.btn-warning {
+	background-color: #ff9800;
+	border-color: #ff9800;
+	font-weight: 600;
+	transition: 0.3s;
+}
+
+.btn-warning:hover {
+	background-color: #e68900;
+	border-color: #e68900;
+	transform: scale(1.05);
+}
+
+.btn-success {
+	background-color: #28a745;
+	border-color: #28a745;
+	font-weight: 600;
+	transition: 0.3s;
+}
+
+.btn-success:hover {
+	background-color: #218838;
+	border-color: #1e7e34;
+	transform: scale(1.05);
+}
+
+/* ------------------- Footer ------------------- */
+footer {
+	background: #ff9800;
+	color: white;
+	padding: 40px 0;
+	margin-top: 50px;
+	text-align: center;
+	font-size: 16px;
+}
+
+/* ------------------- Inputs ------------------- */
+.product-card input.qty {
+	width: 60px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+/* ------------------- Overlay Loader ------------------- */
+.overlay {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	z-index: 10;
+	opacity: 0.7;
+}
+
+.loader {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	border: 10px solid #4CAF50;
+	position: relative;
+	margin: 0 auto;
+	top: 30%;
+	animation: loader 2s linear infinite;
+}
+
+@keyframes loader {
+	50% {
+		opacity: 0.5;
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.loader:after {
+	content: "";
+	width: 35px;
+	height: 35px;
+	background: #FFB300;
+	position: absolute;
+	border-radius: 50%;
+	top: -20px;
+	left: 55px;
+}
+
+.loader:before {
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 15px solid #4CAF50;
+	position: absolute;
+	transform: rotate(-90deg);
+	top: -10px;
+	left: 39px;
+}
+
+/* ------------------- Misc ------------------- */
+.panel-heading {
+	font-weight: bold;
+}
+
+.product-card .price {
+	font-weight: bold;
+	color: #28a745;
+	margin-bottom: 10px;
+}
+
+.product-card .card-body {
+	text-align: center;
+}
+
+.carousel-caption {
+	background: rgba(0, 0, 0, 0.5);
+	padding: 20px;
+	border-radius: 10px;
+}
+
+.carousel-caption h1 {
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.carousel-caption p {
+	font-size: 20px;
+}
