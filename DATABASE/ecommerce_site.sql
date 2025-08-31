@@ -24,7 +24,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `admin` (`id`, `name`, `email`, `password`, `is_active`) VALUES
-(1, 'Admin', 'admin@mail.com', '$2y$10$YKSDtra7v2wH6ORYfry8Ue9t49pk1AvQvdJGuq4lDvFLEcx.kP6Mq', '1');
+(1, 'Admin', 'admin@gmail.com', 'admin123', '1');
 
 -- -------------------------
 -- Table structure for `categories`
@@ -59,10 +59,19 @@ CREATE TABLE `products` (
 
 -- Example pickle products
 INSERT INTO `products` (`product_cat`, `product_title`, `product_price`, `product_qty`, `product_desc`, `product_image`, `product_keywords`) VALUES
-(2, 'Mango Achaar', 250.00, 50, 'Traditional Nepali mango pickle with mustard oil and spices.', 'mango.jpg', 'mango, achar, pickle'),
-(2, 'Mixed Veg Achaar', 300.00, 40, 'Homemade mixed vegetable pickle.', 'mixed.jpg', 'mixed, achar, pickle'),
+(2, 'Mango Achaar', 250.00, 50, 'Traditional Nepali mango pickle with mustard oil and spices.', 'mango.png', 'mango, achar, pickle,veg, allproducts'),
+(2, 'Mixed Veg Achaar', 300.00, 40, 'Homemade mixed vegetable pickle.', 'mixed.jpg', 'mixed, achar, pickle, veg, allproducts'),
 (3, 'Fish Achaar', 400.00, 30, 'Spicy fish pickle from Terai region.', 'fish.jpg', 'fish, achar, nonveg'),
-(2, 'Chili Achaar', 200.00, 60, 'Hot and spicy green chili pickle.', 'chili.jpg', 'chili, achar, spicy');
+(3, 'Chicken Achaar', 400.00, 30, 'Chicken pickle.', 'fish.jpg', 'chicken, achar, nonveg'),
+(3, 'Pork Achaar', 400.00, 30, 'Pork pickle.', 'pork.png', 'pork, achar, nonveg'),
+(3, 'Buff Achaar', 400.00, 30, 'Buff pickle.', 'buff.png', 'buff, achar, nonveg'),
+(3, 'Tuna Fish Achaar', 400.00, 30, 'Spicy fish tuna pickle.', 'tunafish.webp', 'tunafish, achar, nonveg'),
+(2, 'Dalle Khorsani Achaar', 200.00, 60, 'Hot and spicy dalle chili pickle.', 'dallekhorsani.jpg', 'chili, achar, spicy, veg, allproducts'),
+(2, 'Lapsi Achaar', 200.00, 60, 'Sweet and spicy lapsi pickle.', 'lapsi.png', 'lapsi, achar, spicy, veg, allproducts'),
+(2, 'Gundruk Achaar', 200.00, 60, 'Sweet and spicy gundruk pickle.', 'gundruk.jpg', 'gundruk, achar, spicy, veg, allproducts'),
+(2, 'Cucumber Achaar', 200.00, 60, 'Tangy cucumber pickle.', 'cucumber.webp', 'gundruk, achar, spicy, veg, allproducts'),
+(2, 'Radish Achaar', 200.00, 60, 'Radish Pickle pickle.', 'radish.jpg', 'radish, achar, spicy, veg'),
+(2, 'Karela Achaar', 200.00, 60, 'Karela Pickle pickle.', 'karela.ipg', 'karela, achar, spicy, veg');
 
 -- -------------------------
 -- Table structure for `user_info`
@@ -80,8 +89,11 @@ CREATE TABLE `user_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Insert user with hashed password ('123456')
-INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES
-('Suman', 'Shrestha', 'suman@mail.com', '$2y$10$Z9kJkKJozNnF2WQHq3qMxe/tXoVbkTCXG01N1qC6G/RuUkm6n9fPe', '9800000000', 'Kathmandu', 'Bagmati');
+INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Sumana', 'Tamang', 'sumana@gmail.com', 'sumanauser', '9800000000', 'Kathmandu', 'Bagmati');
+INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Jasmine', 'Shrestha', 'jasmineshrestha@mail.com', 'jasmine123', '9839497490', 'Kathmandu', 'Bagmati');
+INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Dikshya', 'Timilsina', 'dikshya.t@mail.com', 'dikshya23', '9872465209', 'Kathmandu', 'Bagmati');
+INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Puspa', 'Bhandari', 'puspa@mail.com', 'puspab12', '9847204789', 'Bhaktapur', 'Bagmati');
+INSERT INTO `user_info` (`first_name`, `last_name`, `email`, `password`, `mobile`, `address1`, `address2`) VALUES ('Sovitha', 'Khadka', 'binisha@mail.com', 'binisha123', '9782047295', 'Kathmandu', 'Bagmati');
 
 -- -------------------------
 -- Table structure for `cart`
@@ -121,7 +133,7 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `orders` (`user_id`, `product_id`, `qty`, `trx_id`, `p_status`) VALUES
-(1, 1, 1, '9L434522M7706801A', 'Completed'),
+(1, 3, 1, '9L434522M7706801A', 'Completed'),
 (1, 2, 2, '8AT7125245323433N', 'Pending');
 
 COMMIT;
