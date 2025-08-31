@@ -67,7 +67,7 @@ $(document).ready(function () {
             url: "action.php",
             method: "POST",
             data: { addToCart: 1, proId: pid },
-            success: function (response) {
+            success: function (data) {
                 alert(response);
                 loadCartCount(); // refresh badge count
                 getCartItems();  // refresh cart dropdown

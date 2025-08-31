@@ -184,12 +184,12 @@ if (isset($_POST["search"])) {
 }
 
 // ================== ADD TO CART ==================
-if (isset($_POST["addToCart"])) {
+if (isset($_POST["addToCart"]) && isset($_POST["proId"])) {
     $p_id = (int) $_POST["proId"];
     $user_id = $_SESSION["uid"] ?? null;
 
     if (!$user_id) {
-        echo "You must be logged in to add to cart!";
+        echo json_encode(["status" => "error", "msg" => "You must be logged in to add to cart!"]);
         exit();
     }
 
@@ -207,17 +207,24 @@ if (isset($_POST["addToCart"])) {
         $update = $con->prepare("UPDATE cart SET qty=? WHERE id=?");
         $update->bind_param("ii", $new_qty, $row['id']);
         $update->execute();
-        echo "Quantity updated!";
     } else {
         // Insert as new item
-        $stmt = $con->prepare("INSERT INTO cart (p_id, ip_add, user_id, qty) VALUES (?,?,?,1)");
-        $stmt->bind_param("isi", $p_id, $ip_add, $user_id);
-        if ($stmt->execute()) {
-            echo "Product added to cart!";
-        } else {
-            echo "Database error: " . $con->error;
-        }
+        $insert = $con->prepare("INSERT INTO cart (p_id, ip_add, user_id, qty) VALUES (?,?,?,1)");
+        $insert->bind_param("isi", $p_id, $ip_add, $user_id);
+        $insert->execute();
     }
+
+    // Return updated cart count
+    $countStmt = $con->prepare("SELECT SUM(qty) as total_qty FROM cart WHERE user_id=?");
+    $countStmt->bind_param("i", $user_id);
+    $countStmt->execute();
+    $countRes = $countStmt->get_result()->fetch_assoc();
+
+    echo json_encode([
+        "status" => "success",
+        "msg" => "Product added to cart!",
+        "cart_count" => $countRes['total_qty'] ?? 0
+    ]);
     exit();
 }
 
