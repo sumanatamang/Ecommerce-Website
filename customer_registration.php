@@ -21,7 +21,7 @@ if (isset($_GET["register"])) {
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a href="index.php" class="navbar-brand">Ecommerce Site</a>
+					<a href="index.php" class="navbar-brand">Achaar Bazar</a>
 				</div>
 				<ul class="nav navbar-nav">
 					<li><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
@@ -92,14 +92,14 @@ if (isset($_GET["register"])) {
 
 								<div class="row">
 									<div class="col-md-12">
-										<label for="address1">Address 1</label>
+										<label for="address1">City</label>
 										<input type="text" id="address1" name="address1" class="form-control" required>
 									</div>
 								</div>
 
 								<div class="row">
 									<div class="col-md-12">
-										<label for="address2">Address 2 (Optional)</label>
+										<label for="address2">State (Optional)</label>
 										<input type="text" id="address2" name="address2" class="form-control">
 									</div>
 								</div>
