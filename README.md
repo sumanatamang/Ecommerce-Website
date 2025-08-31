@@ -2,7 +2,7 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/sumanatamang/EcommerceWebsite.git
+   git clone https://github.com/sumanatamang/Ecommerce-Website.git
    ```
 
 2. Set up your web server (Apache/XAMPP) and ensure PHP is installed
