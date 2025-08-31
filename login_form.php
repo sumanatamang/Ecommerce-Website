@@ -27,7 +27,7 @@ if (isset($_SESSION["uid"])) {
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="index.php" class="navbar-brand">Ecommerce Site</a>
+                <a href="index.php" class="navbar-brand">Achaar Bazar</a>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
@@ -58,37 +58,40 @@ if (isset($_SESSION["uid"])) {
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">Customer Login</div>
                     <div class="panel-body">
-                        <form id="login_form" onsubmit="return false;">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" class="form-control" required>
-                                </div>
-                            </div>
+                        <!-- <form id="login_form" onsubmit="return false;"> -->
+                            <form onsubmit="return false" id="login">
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label for="password">Password</label>
-                                    <input type="password" id="password" name="password" class="form-control" required>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" class="form-control" required>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <p><br /></p>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input style="width:100%;" type="submit" name="login_button" value="Login"
-                                        class="btn btn-success btn-lg">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="password">Password</label>
+                                        <input type="password" id="password" name="password" class="form-control"
+                                            required>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <p><br /></p>
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <a href="customer_registration.php?register=1">Create a new account</a>
+                                <p><br /></p>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input style="width:100%;" type="submit" name="login_button" value="Login"
+                                            class="btn btn-success btn-lg">
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+
+                                <p><br /></p>
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <a href="customer_registration.php?register=1">Create a new account</a>
+                                    </div>
+                                </div>
+                            </form>
                     </div>
                     <div class="panel-footer"></div>
                 </div>

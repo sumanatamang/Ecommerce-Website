@@ -186,15 +186,92 @@
 	transform: scale(1.05);
 }
 
-/* ------------------- Footer ------------------- */
-footer {
-	background: #ff9800;
-	color: white;
-	padding: 40px 0;
-	margin-top: 50px;
-	text-align: center;
-	font-size: 16px;
+/* Footer */
+.sectionp1 {
+    padding: 30px 40px;
+    background: #222;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
+
+footer .col {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    min-width: 200px;
+}
+
+footer h4 {
+    font-size: 18px;
+    padding-bottom: 10px;
+    color: #ffc107;
+}
+
+footer p {
+    font-size: 14px;
+    color: #fff;
+    margin: 0 0 8px 0;
+}
+
+footer a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #ddd;
+    margin-bottom: 8px;
+}
+
+footer a:hover,
+footer .follow i:hover {
+    color: #ffc107;
+}
+
+footer .follow {
+    margin-top: 15px;
+}
+
+footer .follow i {
+    color: #fff;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+footer .install img {
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+footer .row {
+    display: flex;
+    gap: 10px;
+}
+
+footer .copyright {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sectionp1 {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    footer .col {
+        align-items: center;
+    }
+
+    footer .row {
+        justify-content: center;
+    }
+}
+
 
 /* ------------------- Inputs ------------------- */
 .product-card input.qty {

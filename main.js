@@ -184,7 +184,7 @@ $(document).ready(function () {
     });
 
     // ----------------- HERO SLIDER -----------------
-    let heroImages = ["product_images/achaar.jpg", "product_images/achaar.jpg", "product_images/achaar.jpg"];
+    let heroImages = ["./images/achaar.jpg", "./images/achaar.jpg", "./images/achaar.jpg"];
     let index = 0;
     setInterval(() => {
         $("#hero").css("background-image", `url(${heroImages[index]})`);
