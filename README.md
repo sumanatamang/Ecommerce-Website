@@ -1,28 +1,25 @@
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/sumanatamang/Ecommerce-Website.git
-   ```
+Follow these steps to set up the project locally:
 
-2. Set Up Your Web Server
-   Use Apache (via XAMPP or WAMP)
+### 1. Clone the Repository
+```bash
+git clone https://github.com/sumanatamang/Ecommerce-Website.git
+```
 
-   Ensure PHP is installed and properly configured
+### 2. Set Up Your Web Server
+- Use Apache (via [XAMPP](https://www.apachefriends.org/) or [WAMP](https://www.wampserver.com/))
+- Ensure PHP is installed and properly configured
+- Move the cloned project folder into `XAMPP/htdocs` (or your server's root directory)
 
-   Place the cloned project folder inside XAMPP/htdocs 
+### 3. Import the Database
+- Open **phpMyAdmin**
+- Import the `.sql` file located in the `DATABASE` folder
 
-3. Import the Database
-   Open phpMyAdmin
-   
-   Import the .sql file from the folder DATABASE
-
-4. Launch the Application
-   Start your web server (Apache and MySQL)
-
-   Open your browser and go to:
-
-   Code
-   http://localhost/Ecommerce-Website
-   
-   You should now see the application running!
+### 4. Launch the Application
+- Start your web server (Apache and MySQL)
+- Open your browser and navigate to:
+  ```
+  http://localhost/Ecommerce-Website
+  ```
+  You should now see the application running!
