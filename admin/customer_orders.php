@@ -24,10 +24,13 @@
               <th>Quantity</th>
               <th>Trx Id</th>
               <th>Payment Status</th>
+              <th>Shipment Status</th>
+              <th>Tracking #</th>
+              <th>Update Shipment</th>
             </tr>
           </thead>
           <tbody id="customer_order_list">
-            <!-- Order rows will be populated via JS -->
+            <!-- Order rows + shipment info populated via JS -->
           </tbody>
         </table>
       </div>

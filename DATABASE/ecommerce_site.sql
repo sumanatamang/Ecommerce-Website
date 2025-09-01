@@ -384,6 +384,35 @@ VALUES
   (1, 3, 1, '9L434522M7706801A', 'Completed'),
   (1, 2, 2, '8AT7125245323433N', 'Pending');
 
+CREATE TABLE
+  shipments (
+    shipment_id INT (11) NOT NULL AUTO_INCREMENT,
+    order_id INT (11) NOT NULL UNIQUE,
+    shipping_address VARCHAR(255),
+    shipment_status ENUM (
+      'pending',
+      'dispatched',
+      'in transit',
+      'delivered'
+    ) DEFAULT 'pending',
+    tracking_number VARCHAR(255) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (shipment_id),
+    CONSTRAINT fk_order_shipment FOREIGN KEY (order_id) REFERENCES orders (order_id) ON DELETE CASCADE
+  ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
+
+INSERT INTO
+  shipments (
+    order_id,
+    shipping_address,
+    shipment_status,
+    tracking_number
+  )
+VALUES
+  (1, 'Kathmandu, Nepal', 'pending', 'NEP123456789'),
+  (2, 'Pokhara, Nepal', 'dispatched', 'NEP987654321');
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

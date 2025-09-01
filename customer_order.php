@@ -4,6 +4,9 @@ if (!isset($_SESSION["uid"])) {
 	header("location:index.php");
 	exit();
 }
+
+// Just read the name from the session
+$customer_name = isset($_SESSION['name']) ? $_SESSION['name'] : 'Account';
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,7 +59,8 @@ if (!isset($_SESSION["uid"])) {
 							id="cart_count">0</span></a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<span class="glyphicon glyphicon-user"></span> Account <b class="caret"></b>
+						<span class="glyphicon glyphicon-user"></span> <?php echo htmlspecialchars($customer_name); ?>
+						<b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="profile.php">Profile</a></li>
@@ -68,7 +72,6 @@ if (!isset($_SESSION["uid"])) {
 		</div>
 	</nav>
 
-	<!-- Spacing for fixed navbar -->
 	<div style="margin-top:70px;"></div>
 
 	<!-- Customer Orders -->
@@ -79,18 +82,22 @@ if (!isset($_SESSION["uid"])) {
 		<?php
 		include_once("db.php");
 		$user_id = $_SESSION["uid"];
+
 		$orders_list = "
-			SELECT o.order_id, o.user_id, o.product_id, o.qty, o.trx_id, o.p_status,
-				   p.product_title, p.product_price, p.product_image
+			SELECT o.order_id, o.product_id, o.qty, o.trx_id, o.p_status,
+				   p.product_title, p.product_price, p.product_image,
+				   COALESCE(s.shipment_status, 'Pending') AS shipment_status,
+				   s.tracking_number
 			FROM orders o
 			JOIN products p ON o.product_id = p.product_id
+			LEFT JOIN shipments s ON o.order_id = s.order_id
 			WHERE o.user_id = '$user_id'
 			ORDER BY o.order_id DESC
 		";
 		$query = mysqli_query($con, $orders_list);
 
 		if (mysqli_num_rows($query) > 0) {
-			while ($row = mysqli_fetch_array($query)) {
+			while ($row = mysqli_fetch_assoc($query)) {
 				?>
 				<div class="order-card row">
 					<div class="col-sm-4 text-center">
@@ -115,13 +122,22 @@ if (!isset($_SESSION["uid"])) {
 								<td><?php echo $row["trx_id"]; ?></td>
 							</tr>
 							<tr>
-								<td><b>Status</b></td>
-								<td>
-									<span
+								<td><b>Payment Status</b></td>
+								<td><span
 										class="label label-<?php echo ($row['p_status'] == 'Completed') ? 'success' : 'warning'; ?>">
 										<?php echo $row["p_status"]; ?>
-									</span>
-								</td>
+									</span></td>
+							</tr>
+							<tr>
+								<td><b>Shipment Status</b></td>
+								<td><span
+										class="label label-<?php echo ($row['shipment_status'] == 'Delivered') ? 'success' : 'info'; ?>">
+										<?php echo ucfirst($row['shipment_status']); ?>
+									</span></td>
+							</tr>
+							<tr>
+								<td><b>Tracking Number</b></td>
+								<td><?php echo $row['tracking_number'] ?: 'N/A'; ?></td>
 							</tr>
 						</table>
 					</div>
@@ -133,7 +149,6 @@ if (!isset($_SESSION["uid"])) {
 		}
 		?>
 	</div>
-
 </body>
 
 </html>
