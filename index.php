@@ -26,7 +26,7 @@ session_start();
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse">
-                    <span class="sr-only">navigation</span>
+                    <span class="sr-only">Navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -38,7 +38,7 @@ session_start();
                     <li><a href="#hero"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     <li><a href="#products"><span class="glyphicon glyphicon-modal-window"></span> Pickles</a></li>
                     <li><a href="about.php"><span class="glyphicon glyphicon-info-sign"></span> About Us</a></li>
-                    <li><a href="contact.php"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
+                    <li><a href="contact.php"><span class="glyphicon glyphicon-envelope"></span> Contact Us</a></li>
                 </ul>
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
@@ -157,11 +157,11 @@ session_start();
 
         <div class="col">
             <h4>About</h4>
-            <a href="#">About Us</a>
+            <a href="about.php">About Us</a>
             <a href="#">Delivery Information</a>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms & Condition</a>
-            <a href="#">Contact Us</a>
+            <a href="contact.php">Contact Us</a>
         </div>
 
         <div class="col">

@@ -1,21 +1,5 @@
 <?php
 session_start();
-/**
- * Updated schema (no brands):
- *
- * CREATE TABLE `products` (
- *  `product_id` int(100) NOT NULL AUTO_INCREMENT,
- *  `product_cat` int(11) NOT NULL,
- *  `product_title` varchar(255) NOT NULL,
- *  `product_price` int(100) NOT NULL,
- *  `product_qty` int(11) NOT NULL,
- *  `product_desc` text NOT NULL,
- *  `product_image` text NOT NULL,
- *  `product_keywords` text NOT NULL,
- *  CONSTRAINT fk_product_cat FOREIGN KEY fk_product_cat (product_cat) REFERENCES categories(cat_id),
- *  PRIMARY KEY (`product_id`)
- * ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
- */
 
 class Products
 {
@@ -29,7 +13,7 @@ class Products
 		$this->con = $db->connect();
 	}
 
-	// ✅ Get products + categories (no brands)
+	//  Get products + categories
 	public function getProducts()
 	{
 		$q = $this->con->query("SELECT p.product_id, p.product_title, p.product_price, p.product_qty, p.product_desc, p.product_image, p.product_keywords, c.cat_title, c.cat_id FROM products p JOIN categories c ON c.cat_id = p.product_cat");
@@ -56,7 +40,7 @@ class Products
 		return ['status' => 202, 'message' => $_DATA];
 	}
 
-	// ✅ Add product (no brand_id)
+	// Add product
 	public function addProduct($product_name, $category_id, $product_desc, $product_qty, $product_price, $product_keywords, $file)
 	{
 		$fileName = $file['name'];
@@ -90,7 +74,7 @@ class Products
 		}
 	}
 
-	// ✅ Edit product (with image)
+	// Edit product (with image)
 	public function editProductWithImage($pid, $product_name, $category_id, $product_desc, $product_qty, $product_price, $product_keywords, $file)
 	{
 		$fileName = $file['name'];
@@ -130,7 +114,7 @@ class Products
 		}
 	}
 
-	// ✅ Edit product (without image)
+	// Edit product (without image)
 	public function editProductWithoutImage($pid, $product_name, $category_id, $product_desc, $product_qty, $product_price, $product_keywords)
 	{
 		if ($pid != null) {
@@ -153,7 +137,7 @@ class Products
 		}
 	}
 
-	// ✅ Categories
+	// Categories
 	public function addCategory($name)
 	{
 		$q = $this->con->query("SELECT * FROM categories WHERE cat_title = '$name' LIMIT 1");

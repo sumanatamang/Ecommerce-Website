@@ -49,7 +49,7 @@ if (isset($_GET["st"], $_GET["tx"], $_GET["amt"], $_GET["cc"], $_GET["cm"])) {
 
             <head>
                 <meta charset="UTF-8">
-                <title>Payment Success</title>
+                <title>Achaar Bazar - Payment Success</title>
                 <link rel="stylesheet" href="css/bootstrap.min.css" />
                 <script src="js/jquery2.js"></script>
                 <script src="js/bootstrap.min.js"></script>

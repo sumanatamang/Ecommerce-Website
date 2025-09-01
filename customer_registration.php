@@ -6,7 +6,7 @@ if (isset($_GET["register"])) {
 
 	<head>
 		<meta charset="UTF-8">
-		<title>Ecommerce</title>
+		<title>Achaar Bazar - Register</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<script src="js/jquery2.js"></script>
 		<script src="js/bootstrap.min.js"></script>

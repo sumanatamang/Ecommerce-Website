@@ -10,7 +10,7 @@ if (isset($_SESSION["uid"])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Achaar Bazar - About Us</title>
+    <title>Achaar Bazar - Contact Us</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="js/jquery2.js"></script>
@@ -34,40 +34,44 @@ if (isset($_SESSION["uid"])) {
                 <ul class="nav navbar-nav">
                     <li><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     <li><a href="#products"><span class="glyphicon glyphicon-modal-window"></span> Pickles</a></li>
-                    <li class="active"><a href="about.php"><span class="glyphicon glyphicon-info-sign"></span> About
-                            Us</a></li>
-                    <li><a href="contact.php"><span class="glyphicon glyphicon-envelope"></span> Contact Us</a></li>
+                    <li><a href="about.php"><span class="glyphicon glyphicon-info-sign"></span> About Us</a></li>
+                    <li class="active"><a href="contact.php"><span class="glyphicon glyphicon-envelope"></span>
+                            Contact Us</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- About Section -->
-    <div class="container" style="margin-top:100px;">
-        <h2 class="text-center">About Achaar Bazar</h2>
-        <p class="text-center" style="margin: 20px 0;">
-            Achaar Bazar is committed to bringing you authentic Nepali pickles made with love and care.
-            Our pickles are crafted from fresh ingredients and traditional recipes, delivering rich flavors
-            and a healthy addition to every meal.
-        </p>
-        <div class="row text-center" style="margin-top:50px;">
-            <div class="col-md-4">
-                <i class="fas fa-seedling fa-3x" style="color:#28a745;"></i>
-                <h4>Fresh Ingredients</h4>
-                <p>We use only fresh and natural ingredients to ensure top quality and taste.</p>
+    <!-- Contact Section -->
+    <div class="container" style="margin-top:100px; max-width:600px;">
+        <h2 class="text-center">Contact Us</h2>
+        <p class="text-center" style="margin-bottom:30px;">Have questions or feedback? We'd love to hear from you.</p>
+        <form id="contact_form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
             </div>
-            <div class="col-md-4">
-                <i class="fas fa-heart fa-3x" style="color:#e74c3c;"></i>
-                <h4>Made with Love</h4>
-                <p>Each pickle is prepared carefully following age-old Nepali traditions.</p>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Your Email" required>
             </div>
-            <div class="col-md-4">
-                <i class="fas fa-utensils fa-3x" style="color:#f1c40f;"></i>
-                <h4>Delicious Taste</h4>
-                <p>Our pickles enhance the flavor of your meals with a perfect balance of spices.</p>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
             </div>
-        </div>
+            <button type="submit" class="btn btn-warning btn-block">Send Message</button>
+        </form>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#contact_form").on("submit", function (e) {
+                e.preventDefault();
+                alert("Thank you! Your message has been sent.");
+                $("#contact_form")[0].reset();
+            });
+        });
+    </script>
 
     <footer class="sectionp1" style="margin-top:50px; padding:30px; background:#222; color:white;">
         <div class="col">
