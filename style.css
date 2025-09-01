@@ -48,9 +48,7 @@
 	max-width: 100%;
 	height: auto;
 	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-	/* Optional depth */
 	border-radius: 0;
-	/* No rounded corners */
 }
 
 .hero h1 {
@@ -82,47 +80,6 @@
 	background-color: #e0a800;
 }
 
-/* ------------------- Responsive Design ------------------- */
-@media (max-width: 768px) {
-	.hero-container {
-		flex-direction: column;
-		text-align: center;
-	}
-
-	.hero-text,
-	.hero-image {
-		max-width: 100%;
-		padding: 0;
-	}
-
-	.hero-image {
-		margin-top: 30px;
-	}
-
-	.hero h1 {
-		font-size: 40px;
-	}
-
-	.hero p {
-		font-size: 18px;
-	}
-}
-
-@media (max-width: 480px) {
-	.hero h1 {
-		font-size: 35px;
-	}
-
-	.hero p {
-		font-size: 16px;
-	}
-
-	.hero .btn {
-		font-size: 16px;
-		padding: 12px 24px;
-	}
-}
-
 /* ------------------- Cards ------------------- */
 .card {
 	border: none;
@@ -140,13 +97,11 @@
 }
 
 .card:hover {
-	/* transform: translateY(-2px); */
 	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .category-card img,
 .product-card img {
-	height: 200px;
 	height: 200px;
 	object-fit: cover;
 	display: block;
@@ -186,92 +141,69 @@
 	transform: scale(1.05);
 }
 
-/* Footer */
+/* ------------------- Footer ------------------- */
 .sectionp1 {
-    padding: 30px 40px;
-    background: #222;
-    color: white;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+	padding: 30px 40px;
+	background: #222;
+	color: white;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 footer .col {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    min-width: 200px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+	min-width: 200px;
 }
 
 footer h4 {
-    font-size: 18px;
-    padding-bottom: 10px;
-    color: #ffc107;
+	font-size: 18px;
+	padding-bottom: 10px;
+	color: #ffc107;
 }
 
-footer p {
-    font-size: 14px;
-    color: #fff;
-    margin: 0 0 8px 0;
-}
-
+footer p,
 footer a {
-    font-size: 14px;
-    text-decoration: none;
-    color: #ddd;
-    margin-bottom: 8px;
+	font-size: 14px;
+	color: #fff;
+	margin: 0 0 8px 0;
+	text-decoration: none;
 }
 
 footer a:hover,
 footer .follow i:hover {
-    color: #ffc107;
+	color: #ffc107;
 }
 
 footer .follow {
-    margin-top: 15px;
+	margin-top: 15px;
 }
 
 footer .follow i {
-    color: #fff;
-    padding-right: 10px;
-    cursor: pointer;
+	color: #fff;
+	padding-right: 10px;
+	cursor: pointer;
 }
 
 footer .install img {
-    margin: 5px 0;
-    border-radius: 5px;
+	margin: 5px 0;
+	border-radius: 5px;
 }
 
 footer .row {
-    display: flex;
-    gap: 10px;
+	display: flex;
+	gap: 10px;
 }
 
 footer .copyright {
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #aaa;
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	font-size: 14px;
+	color: #aaa;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .sectionp1 {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-    }
-
-    footer .col {
-        align-items: center;
-    }
-
-    footer .row {
-        justify-content: center;
-    }
-}
-
 
 /* ------------------- Inputs ------------------- */
 .product-card input.qty {
@@ -364,4 +296,68 @@ footer .copyright {
 
 .carousel-caption p {
 	font-size: 20px;
+}
+
+#search_suggestions {
+	max-height: 200px;
+	overflow-y: auto;
+}
+
+#search_suggestions .list-group-item {
+	cursor: pointer;
+}
+
+/* ------------------- Responsive Design ------------------- */
+@media (max-width: 768px) {
+	.hero-container {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.hero-text,
+	.hero-image {
+		max-width: 100%;
+		padding: 0;
+	}
+
+	.hero-image {
+		margin-top: 30px;
+	}
+
+	.hero h1 {
+		font-size: 40px;
+	}
+
+	.hero p {
+		font-size: 18px;
+	}
+
+	.sectionp1 {
+		flex-direction: column;
+		text-align: center;
+		padding: 20px;
+	}
+
+	footer .col {
+		align-items: center;
+	}
+
+	footer .row {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 480px) {
+	.hero h1 {
+		font-size: 35px;
+	}
+
+	.hero p {
+		font-size: 16px;
+	}
+
+	.hero .btn {
+		font-size: 16px;
+		padding: 12px 24px;
+	}
 }

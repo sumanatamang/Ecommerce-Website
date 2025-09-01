@@ -3,6 +3,7 @@ require "config/constants.php";
 session_start();
 if (!isset($_SESSION["uid"])) {
     header("location:index.php");
+    exit();
 }
 
 // Database connection
@@ -37,7 +38,6 @@ if ($con->connect_error) {
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            max-width: 1200px;
             margin: auto;
         }
 
@@ -83,20 +83,10 @@ if ($con->connect_error) {
             background: #e0a800;
         }
 
-        /* Sidebar Categories */
-        .category-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-        }
-
-        .category-list li {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .category-list li button {
-            width: 100%;
+        /* Categories Row Below Hero */
+        #get_category .btn.category {
+            margin: 5px;
+            min-width: 120px;
         }
 
         /* Responsive */
@@ -156,13 +146,17 @@ if ($con->connect_error) {
                     <li><a href="customer_order.php"><span class="glyphicon glyphicon-list-alt"></span> Orders</a></li>
                 </ul>
 
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search Pickles" id="search">
+                <form class="navbar-form navbar-left" autocomplete="off">
+                    <div class="form-group" style="position:relative;">
+                        <input type="text" class="form-control" placeholder="Search Pickles..." id="search">
+                        <div id="search_suggestions" class="list-group"
+                            style="position:absolute; top:38px; width:100%; z-index:1000;"></div>
                     </div>
-                    <button type="button" class="btn btn-success" id="search_btn"><span
-                            class="glyphicon glyphicon-search"></span></button>
+                    <button type="submit" class="btn btn-success" id="search_btn">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
                 </form>
+
 
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Cart Link -->
@@ -194,93 +188,33 @@ if ($con->connect_error) {
     <p><br /><br /><br /></p>
 
     <div class="container-fluid">
-        <div class="row">
 
-            <!-- Categories Sidebar -->
-            <div class="col-md-2">
-                <ul class="category-list" id="get_category"></ul>
-            </div>
-
-            <!-- Main Content -->
-            <div class="col-md-8">
-
-                <!-- Hero Section -->
-                <section id="hero" class="hero">
-                    <div class="hero-container">
-                        <div class="hero-text">
-                            <h1>Welcome to Achaar Bazar</h1>
-                            <p>Authentic Nepali Pickles Made with Love</p>
-                            <p>Healthy pickles made with fresh ingredients and traditional recipes. Perfect for any
-                                meal.</p>
-                            <a href="#products" class="btn btn-warning btn-lg">Shop Now</a>
-                        </div>
-                        <div class="hero-image">
-                            <img src="./images/banner.jpg" alt="Nepali Pickles">
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Products -->
-                <div class="row" id="product_msg"></div>
-                <div class="panel panel-info" id="scroll">
-                    <div class="panel-heading">Our Pickles</div>
-                    <div class="panel-body" id="get_product"></div>
-                    <!-- Footer -->
-                    <footer class="sectionp1" style="margin-top:50px; padding:30px; background:#222; color:white;">
-                        <div class="col">
-                            <h4>Contact</h4>
-                            <p><strong>Address:</strong> Durbarmarg, Kathmandu, Nepal</p>
-                            <p><strong>Phone:</strong> +9779866888838 / +9779842488838</p>
-                            <p><strong>Hours:</strong> 10:00am - 6:00pm, Mon - Sat</p>
-                            <div class="follow">
-                                <h4>Follow Us</h4>
-                                <div class="icon">
-                                    <i class="fab fa-facebook-f"></i>
-                                    <i class="fab fa-twitter"></i>
-                                    <i class="fab fa-instagram"></i>
-                                    <i class="fab fa-pinterest-p"></i>
-                                    <i class="fab fa-youtube"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <h4>About</h4>
-                            <a href="#">About Us</a>
-                            <a href="#">Delivery Information</a>
-                            <a href="#">Privacy Policy</a>
-                            <a href="#">Terms & Condition</a>
-                            <a href="#">Contact Us</a>
-                        </div>
-
-                        <div class="col">
-                            <h4>Account</h4>
-                            <a href="#">Sign In</a>
-                            <a href="#">View Cart</a>
-                            <a href="#">My Wishlist</a>
-                            <a href="#">Track My Order</a>
-                            <a href="#">Help</a>
-                        </div>
-
-                        <div class="col install">
-                            <h4>Install App</h4>
-                            <p>From App Store or Google Play</p>
-                            <div class="row">
-                                <img src="./images/appstore.jpg" width="150" height="50" alt="">
-                                <img src="./images/googleplay.jpg" width="150" height="50" alt="">
-                            </div>
-                        </div>
-
-                        <div class="copyright">
-                            &copy; <?php echo date("Y"); ?> Achaar Bazar. All Rights Reserved.
-                        </div>
-                    </footer>
-
-
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-container">
+                <div class="hero-text">
+                    <h1>Welcome to Achaar Bazar</h1>
+                    <p>Authentic Nepali Pickles Made with Love</p>
+                    <p>Healthy pickles made with fresh ingredients and traditional recipes. Perfect for any meal.</p>
+                    <a href="#products" class="btn btn-warning btn-lg">Shop Now</a>
+                </div>
+                <div class="hero-image">
+                    <img src="./images/banner.jpg" alt="Nepali Pickles">
                 </div>
             </div>
+        </section>
 
-            <div class="col-md-2"></div>
+        <!-- Categories Row Below Hero -->
+        <div class="container text-center" style="margin-top:50px;">
+            <h2>Our Categories</h2>
+            <div id="get_category" class="d-flex justify-content-center flex-wrap gap-2"></div>
+        </div>
+
+        <!-- Products Section -->
+        <div class="row" id="product_msg"></div>
+        <div class="panel panel-info" id="scroll">
+            <div class="panel-heading">Our Pickles</div>
+            <div class="panel-body" id="get_product"></div>
         </div>
 
         <!-- Pagination -->
@@ -289,12 +223,13 @@ if ($con->connect_error) {
                 <ul class="pagination" id="pageno"></ul>
             </div>
         </div>
+
     </div>
 
     <script>
         var CURRENCY = '<?php echo CURRENCY; ?>';
 
-        // Load categories stacked
+        // Load categories in a horizontal row
         $(document).ready(function () {
             $.ajax({
                 url: "action.php",
@@ -305,12 +240,63 @@ if ($con->connect_error) {
                     $(data).find('h5').each(function () {
                         let title = $(this).text();
                         let cid = $(this).next('button').attr('cid');
-                        $('#get_category').append('<li><button class="btn btn-success category mb-2" cid="' + cid + '">' + title + '</button></li>');
+                        $('#get_category').append('<button class="btn btn-success category" cid="' + cid + '">' + title + '</button>');
                     });
                 }
             });
         });
     </script>
+    <!-- Footer -->
+    <footer class="sectionp1" style="margin-top:50px; padding:30px; background:#222; color:white;">
+        <div class="col">
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> Durbarmarg, Kathmandu, Nepal</p>
+            <p><strong>Phone:</strong> +9779866888838 / +9779842488838</p>
+            <p><strong>Hours:</strong> 10:00am - 6:00pm, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest-p"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Condition</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+        <div class="col">
+            <h4>Account</h4>
+            <a href="login_form.php">Sign In</a>
+            <a href="cart.php">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="./images/appstore.jpg" width="150" height="50" alt="">
+                <img src="./images/googleplay.jpg" width="150" height="50" alt="">
+            </div>
+        </div>
+
+        <div class="copyright">
+            &copy; <?php echo date("Y"); ?> Achaar Bazar. All Rights Reserved.
+        </div>
+    </footer>
+
 
 </body>
 
