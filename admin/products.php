@@ -81,7 +81,7 @@ include_once("./templates/navbar.php");
             <input type="file" name="product_image" class="form-control" required>
           </div>
           <input type="hidden" name="add_product" value="1">
-          <button type="button" class="btn btn-primary add-product">Add Product</button>
+          <button type="submit" class="btn btn-primary">Add Product</button>
         </form>
       </div>
     </div>

@@ -222,7 +222,9 @@ if (isset($_POST['GET_PRODUCT'])) {
 }
 
 if (isset($_POST['add_product'])) {
+	header("Content-Type: application/json"); // must come first
 	extract($_POST);
+
 	if (
 		!empty($product_name)
 		&& !empty($category_id)
@@ -233,14 +235,21 @@ if (isset($_POST['add_product'])) {
 		&& !empty($_FILES['product_image']['name'])
 	) {
 		$p = new Products();
-		$result = $p->addProduct($product_name, $category_id, $product_desc, $product_qty, $product_price, $product_keywords, $_FILES['product_image']);
-		header("Content-type: application/json");
+		$result = $p->addProduct(
+			$product_name,
+			$category_id,
+			$product_desc,
+			$product_qty,
+			$product_price,
+			$product_keywords,
+			$_FILES['product_image']
+		);
+
 		echo json_encode($result);
-		http_response_code($result['status']);
-		exit();
+		exit;
 	} else {
 		echo json_encode(['status' => 303, 'message' => 'Empty fields']);
-		exit();
+		exit;
 	}
 }
 

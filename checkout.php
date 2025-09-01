@@ -128,8 +128,8 @@ $stmt->close();
                         <div id="summary-items">
                             <?php foreach ($items as $item): ?>
                                 <div class="d-flex justify-content-between">
-                                    <span><?= htmlspecialchars($item['product_title']); ?> x <span
-                                            class="summary-qty"><?= $item['qty']; ?></span></span>
+                                    <span><?= htmlspecialchars($item['product_title']); ?>  <span
+                                            class="summary-qty"><?= $item['qty']; ?></span></span> x
                                     <span
                                         class="summary-total"><?= CURRENCY . number_format($item['product_price'] * $item['qty'], 2); ?></span>
                                 </div>
@@ -144,7 +144,7 @@ $stmt->close();
                             <input type="hidden" name="amt" id="payment-amt" value="<?= $total ?>">
                             <input type="hidden" name="st" value="Completed">
                             <input type="hidden" name="tx" value="<?= time(); ?>">
-                            <input type="hidden" name="cc" value="USD">
+                            <input type="hidden" name="cc" value="Rs">
                             <input type="hidden" name="cm" value="<?= $user_id; ?>">
                             <button type="submit" class="btn btn-success btn-lg btn-pay">Pay with PayPal (Sandbox)</button>
                         </form>

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     // ----------------- GLOBAL -----------------
     var productList;
@@ -9,10 +9,10 @@ $(document).ready(function() {
             url: '../admin/classes/Products.php',
             method: 'POST',
             data: { GET_PRODUCT: 1 },
-            success: function(response) {
+            success: function (response) {
                 try {
                     var resp = $.parseJSON(response);
-                } catch(e) {
+                } catch (e) {
                     console.error("Invalid JSON response", response);
                     return;
                 }
@@ -23,7 +23,7 @@ $(document).ready(function() {
                     productList = resp.message.products;
                     var productHTML = '';
                     if (productList && productList.length > 0) {
-                        $.each(productList, function(index, product) {
+                        $.each(productList, function (index, product) {
                             productHTML += `<tr>
                                 <td>${index + 1}</td>
                                 <td>${product.product_title}</td>
@@ -50,7 +50,7 @@ $(document).ready(function() {
 
                     // Populate category dropdowns
                     var catSelectHTML = '<option value="">Select Category</option>';
-                    $.each(resp.message.categories, function(index, cat) {
+                    $.each(resp.message.categories, function (index, cat) {
                         catSelectHTML += `<option value="${cat.cat_id}">${cat.cat_title}</option>`;
                     });
                     $(".category_list").html(catSelectHTML);
@@ -65,31 +65,47 @@ $(document).ready(function() {
     getProducts();
 
     // ----------------- ADD NEW PRODUCT -----------------
-    $(".add-product").on("click", function() {
-        var formData = new FormData($("#add-product-form")[0]);
+    // ----------------- ADD NEW PRODUCT -----------------
+    $(document).on("submit", "#add-product-form", function (e) {
+        e.preventDefault();
+
+        var formData = new FormData(this);
+        formData.append("add_product", true); // important flag
+
         $.ajax({
-            url: '../admin/classes/Products.php',
-            method: 'POST',
+            url: "../admin/classes/Products.php",
+            type: "POST",
             data: formData,
             contentType: false,
-            cache: false,
             processData: false,
-            success: function(response) {
-                try { var resp = $.parseJSON(response); } catch(e) { alert("Error adding product"); return; }
+            success: function (response) {
+                console.log("Server response:", response); // debug
+                try {
+                    var resp = $.parseJSON(response);
+                } catch (e) {
+                    alert("Invalid response from server");
+                    return;
+                }
+
                 if (resp.status === 202) {
-                    $("#add-product-form").trigger("reset");
-                    $("#add_product_modal").modal('hide');
+                    $("#add-product-form")[0].reset();
+                    $("#add_product_modal").modal("hide");
                     getProducts();
                     alert("Product added successfully!");
                 } else {
                     alert(resp.message || "Failed to add product");
                 }
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+                console.log(xhr.responseText);
+                alert("Something went wrong with the request.");
             }
         });
     });
 
     // ----------------- EDIT PRODUCT -----------------
-    $(document).on('click', '.edit-product', function() {
+    $(document).on('click', '.edit-product', function () {
         var product = $.parseJSON($.trim($(this).find('span').text()));
 
         $("#edit-product-form input[name='e_product_name']").val(product.product_title);
@@ -106,7 +122,7 @@ $(document).ready(function() {
         $("#edit_product_modal").modal('show');
     });
 
-    $(".submit-edit-product").on('click', function() {
+    $(".submit-edit-product").on('click', function () {
         var formData = new FormData($("#edit-product-form")[0]);
         $.ajax({
             url: '../admin/classes/Products.php',
@@ -115,8 +131,8 @@ $(document).ready(function() {
             contentType: false,
             cache: false,
             processData: false,
-            success: function(response) {
-                try { var resp = $.parseJSON(response); } catch(e) { alert("Error updating product"); return; }
+            success: function (response) {
+                try { var resp = $.parseJSON(response); } catch (e) { alert("Error updating product"); return; }
                 if (resp.status === 202) {
                     $("#edit-product-form").trigger("reset");
                     $("#edit_product_modal").modal('hide');
@@ -130,15 +146,15 @@ $(document).ready(function() {
     });
 
     // ----------------- DELETE PRODUCT -----------------
-    $(document).on('click', '.delete-product', function() {
+    $(document).on('click', '.delete-product', function () {
         var pid = $(this).attr('pid');
         if (confirm("Are you sure you want to delete this product?")) {
             $.ajax({
                 url: '../admin/classes/Products.php',
                 method: 'POST',
                 data: { DELETE_PRODUCT: 1, pid: pid },
-                success: function(response) {
-                    try { var resp = $.parseJSON(response); } catch(e) { alert("Error deleting product"); return; }
+                success: function (response) {
+                    try { var resp = $.parseJSON(response); } catch (e) { alert("Error deleting product"); return; }
                     if (resp.status === 202) {
                         getProducts();
                         alert("Product deleted successfully!");

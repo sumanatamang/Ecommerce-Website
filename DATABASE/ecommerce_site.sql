@@ -33,6 +33,7 @@ CREATE TABLE
     PRIMARY KEY (`id`)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
+-- Insert user with hashed password ('admin123')
 INSERT INTO
   `admin` (`id`, `name`, `email`, `password`, `is_active`)
 VALUES
@@ -151,7 +152,7 @@ VALUES
     400.00,
     30,
     'Spicy fish tuna pickle.',
-    'tunafish.webp',
+    'tunafish.jpg',
     'tunafish, achar, nonveg'
   ),
   (
@@ -187,7 +188,7 @@ VALUES
     200.00,
     60,
     'Tangy cucumber pickle.',
-    'cucumber.webp',
+    'cucumber.jpg',
     'gundruk, achar, spicy, veg, allproducts'
   ),
   (
@@ -225,7 +226,7 @@ CREATE TABLE
     PRIMARY KEY (`user_id`)
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;
 
--- Insert user with hashed password ('123456')
+-- Insert user with hashed password ('user123')
 INSERT INTO
   `user_info` (
     `first_name`,

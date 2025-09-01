@@ -221,9 +221,7 @@ if (isset($_POST["addToCart"]) && isset($_POST["proId"])) {
     $countRes = $countStmt->get_result()->fetch_assoc();
 
     echo json_encode([
-        "status" => "success",
         "msg" => "Product added to cart!",
-        "cart_count" => $countRes['total_qty'] ?? 0
     ]);
     exit();
 }

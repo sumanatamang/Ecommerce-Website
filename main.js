@@ -93,8 +93,8 @@ $(document).ready(function () {
             url: "action.php",
             method: "POST",
             data: { addToCart: 1, proId: pid },
-            success: function (response) {
-                alert(response);
+            success: function (data) {
+                alert(data);
                 loadCartCount();
                 getCartItems();
             },
